@@ -48,7 +48,8 @@ const authService = {
         }
         const token = generateToken(user);
         return token;
-    }
+    },
+    
 };
 
 module.exports = authService;

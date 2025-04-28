@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// =================== USER MODELS ===================
+// =================== USER MODEL ===================
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
@@ -22,4 +22,13 @@ model User {
   name    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  habits Habit[]
+}
+
+// =================== HABIT MODEL ===================
+model Habit {
+  id Int @id @default(autoincrement())
+  title String
+  userId Int
+  user User @relation(fields:[userId], references:[id])
 }
