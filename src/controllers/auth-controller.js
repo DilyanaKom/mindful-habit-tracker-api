@@ -1,4 +1,5 @@
 const authService = require("../services/auth/auth-service.js");
+const { setAuthCookie } = require("../services/auth/auth-cookie.js");
 
 const register = async (req, res) => {
     try {
@@ -7,9 +8,12 @@ const register = async (req, res) => {
             return res.status(400).json({ error: 'Email and password are required' });
         }
         const result = await authService.register(email, password, name);
-        res.status(201).json(result);
+        setAuthCookie(res, result.token)
+        return res.status(201).json(result);
+        
+        
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        return res.status(400).json({ error: error.message });
     }
 };
 
@@ -20,10 +24,12 @@ const login = async (req, res) => {
             return res.status(400).json({ error: 'Email and password are required' });
         }
         const result = await authService.login(email, password);
-        res.status(200).json(result);
+        setAuthCookie(res, result)
+        return res.status(200).json(result);
+       
         
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        return res.status(400).json({ error: error.message });
     }
 }
 
