@@ -1,5 +1,5 @@
 const { hashPassword, verifyPassword } = require('./password.js');
-const { generateToken } = require('../../utils/token-generator.js');
+const { generateToken} = require('../../utils/token-util.js');
 
 const { PrismaClient } = require('../../../generated/prisma')
 
