@@ -11,4 +11,8 @@ function generateToken(user) {
     return token;
 }
 
-module.exports = { generateToken };
+function verifyToken(token){
+    return decoded = jwt.verify(token, JWT_SECRET);
+}
+
+module.exports = { generateToken, verifyToken };
