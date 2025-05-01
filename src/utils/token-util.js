@@ -3,7 +3,7 @@ const { JWT_SECRET } = require('../constants.js');
 
 function generateToken(user) {
     const payload = {
-        id: user._id,
+        id: user.id,
         email: user.email,
         name: user.name,
     };
