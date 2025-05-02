@@ -2,7 +2,6 @@ const habitService = require("../services/habit/habit-service.js");
 
 const createHabit = async (req, res) => {
     try {
-        console.log(req.body);
         const { title } = req.body;
         if (!title) {
             return res.status(400).json({ error: 'Title is required' });
