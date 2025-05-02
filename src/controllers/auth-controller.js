@@ -24,7 +24,7 @@ const login = async (req, res) => {
             return res.status(400).json({ error: 'Email and password are required' });
         }
         const result = await authService.login(email, password);
-        setAuthCookie(res, result)
+        setAuthCookie(res, result.token)
         return res.status(200).json(result);
        
         
