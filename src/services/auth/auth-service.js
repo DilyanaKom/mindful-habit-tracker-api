@@ -35,8 +35,12 @@ const authService = {
     },
     async login(email, password){
         const user = await prisma.user.findUnique({
-            where: {email}
-
+            where: {email},
+            select: {
+                id: true,
+                email: true,
+                name: true,
+            }
         });
 
         if(!user){
@@ -47,7 +51,7 @@ const authService = {
             throw new Error('Invalid email or password!');
         }
         const token = generateToken(user);
-        return token;
+        return { user, token };
     },
 
 };
