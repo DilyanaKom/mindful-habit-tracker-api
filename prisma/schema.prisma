@@ -31,4 +31,14 @@ model Habit {
   title String
   userId Int
   user User @relation(fields:[userId], references:[id])
+  habitLogs   HabitLog[]
+}
+// =================== HABIT LOG ===================
+model HabitLog {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  completed Boolean
+  habitId   Int
+  habit     Habit    @relation(fields: [habitId], references: [id])
+  @@unique([habitId, date])
 }
